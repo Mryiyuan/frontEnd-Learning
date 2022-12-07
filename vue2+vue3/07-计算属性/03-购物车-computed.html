@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/vue3.js"></script>
+    <style>
+        li {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+        }
+
+        li img {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <input type="checkbox" v-model="isAll" @change="handleAllChecked">全选/全不选
+        <ul>
+            <li v-for="(item,index) in datalist" :key="item.id">
+                <input type="checkbox" v-model="checklist" :value="item" @change="handleItemChecked">
+                <!-- 方便从数组中寻找对象的属性 -->
+                <img id='img' :src="item.pic" />
+                <div>
+                    <div>{{item.name}}</div>
+                    <div style="color: red">${{item.price}}
+                    </div>
+
+                    <div>
+                        <button @click="item.number--" :disabled="item.number===1">-</button>
+                        <span>{{item.number}}</span>
+                        <button @click="item.number++" :disabled="item.number===item.limit">+</button>
+                    </div>
+                    <div>
+                        <button @click="handleDeleteClick(index,item.id)">delete </button>
+                    </div>
+
+                </div>
+            </li>
+        </ul>
+        <div>总金额:{{computedSum}}</div>
+
+
+    </div>
+    <script>
+        var obj = {
+            data() {
+                return {
+                    isAll: false,
+                    checklist: [],//勾选的购物车数据
+                    datalist: [{
+                        name: "item1",
+                        price: 10,
+                        number: 1,
+                        id: 1,
+                        limit: 5,
+                        pic: "https://img.zcool.cn/community/01649657d154f30000018c1be40464.jpg@1280w_1l_2o_100sh.jpg"
+                    },
+                    {
+                        name: "item2",
+                        price: 15,
+                        number: 1,
+                        id: 2,
+                        limit: 15,
+                        pic: "https://img.zcool.cn/community/01fe3a5aa9dea5a80120be1458fa78.jpg@1280w_1l_2o_100sh.jpg"
+                    },
+                    {
+                        name: "item3",
+                        price: 20,
+                        number: 1,
+                        id: 3,
+                        limit: 15,
+                        pic: "https://img.zcool.cn/community/01739d5ac18a1ca8012182079ee088.JPG@1280w_1l_2o_100sh.jpg"
+                    }
+                    ]
+                }
+            }, 
+            methods: {
+                sum() {
+                    var total = 0
+                    //计算总金额：checklist中元素的总价格
+                    this.checklist.forEach(item => {
+                        total = total + item.price * item.number
+                    })
+                    return total
+                },
+                handleDeleteClick(index, id) {
+                    //删除的是datalist-靠 index
+                    this.datalist.splice(index, 1)
+                    console.log(id)
+                    //删除的是checklist 靠id
+                    this.checklist = this.checklist.filter(item => item.id !== id)
+                    //删除后同步下状态
+                    this.handleItemChecked()
+                    //删除到最后一个是全选不了 所以全选框自动为空
+                    if(this.datalist.length===0){
+                        this.isAll=false
+                    }
+
+                },
+                handleAllChecked() {
+                    if (this.isAll) {
+                        this.checklist = this.datalist
+                    } else {
+                        this.checklist = []
+                    }
+
+
+                },
+                handleItemChecked() {
+                    if (this.checklist.length === this.datalist.length) {
+                        this.isAll = true
+                    } else {
+                        this.isAll = false
+                    }
+                }
+                //     handleAdd(){
+                //     if(this.item.number<this.item.limit){
+                //         this.item.number++
+
+                //     }
+
+                //    }
+            },
+            computed:{
+                computedSum(){
+                    var total = 0
+                    //计算总金额：checklist中元素的总价格
+                    this.checklist.forEach(item => {
+                        total = total + item.price * item.number
+                    })
+                    return total
+
+                }
+            }
+        }
+
+        var vm = Vue.createApp(obj).mount("#box")
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/vue2.js"></script>
+</head>
+<body>
+    <div id = 'box'>
+        {{myname.substring(0,1).toUpperCase() + myname.substring(1)}}
+
+        {{myComputedName}}
+    </div>
+    <script>
+        //计算属性（防止模板过重 难以维护），负责逻辑放在计算属性中来写 为计算某个结果而来；函数本就为在事件绑定中 做事件处理器用
+        //method在每一次执行都会走流程执行一遍，但计算属性会有缓存 不会重复执行 节省资源 用来计算结果
+        
+        var vm = new Vue({
+            el:"#box",
+            data:{
+                myname:"kerwin"
+            },
+            computed:
+            {
+                myComputedName(){
+                    return this.myname.substring(0,1).toUpperCase() + this.myname.substring(1)
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

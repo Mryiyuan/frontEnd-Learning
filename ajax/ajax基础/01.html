@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>aaa</button>
+    <script>
+        var xhr = new XMLHttpRequest()
+        xhr.open("get","1.json",true)
+
+    //第一个 get post
+    //第二个 请求地址
+    //第三个 参数 是否异步
+
+    xhr.send()
+
+    xhr.onreadystatechange = function(){
+        console.log("电话接通")
+        console.log(xhr.readyState)
+        if(xhr.readyState===4){
+            if(xhr.status===200){
+                console.log(JSON.parse(xhr.responseText))
+            }else{
+                console.log("error",xhr.responseText)
+            }
+            
+        }
+    }
+    xhr.onload =function(){
+        if(xhr.readyState===4){
+            if(xhr.status===200){
+                console.log(JSON.parse(xhr.responseText))
+            }else{
+                console.log("error",xhr.responseText)
+            }
+            
+        }
+    }
+    </script>
+</body>
+</html>
