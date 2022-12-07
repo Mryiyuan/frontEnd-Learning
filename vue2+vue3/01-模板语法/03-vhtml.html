@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/vue2.js"></script>
+</head>
+<body>
+    <div id = "box">
+        <div v-html = "mytext"></div>
+        <div v-html = "myhtml"></div>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:"#box",
+            data:{
+                mytext:"<b>加粗的</b>",
+                myhtml:`  <div class="nav">
+            <div><a href="/" data-act="home-click"  class="active"  >首页</a></div>
+            <div><a href="/films" data-act="movies-click" >电影</a></div>
+            <div><a href="/cinemas" data-act="cinemas-click" >影院</a></div> 
+            <div><a href="http://www.gewara.com">演出</a></div>
+            <!-- <div><a href="/dramas" data-act="TVdramas-click" >电视剧</a></div> -->
+            <div><a href="/board" data-act="board-click" >榜单</a></div>
+            <div><a href="/news" data-act="hotNews-click" >热点</a></div>
+            <div><a href="/edimall"  >商城</a></div>
+        </div>`
+            }
+        })
+    </script>
+</body>
+</html>

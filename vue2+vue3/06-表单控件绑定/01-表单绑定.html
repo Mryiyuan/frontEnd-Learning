@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/vue2.js"></script>
+</head>
+
+<body>
+
+    <div id="box">
+        <textarea v-model="mytext"></textarea>
+        <div>
+            用户名: <input v-model="mytext">
+        </div>
+        <input type="checkbox" v-model="isRemember">记住用户名
+        <button @click="handleLogin">login</button>
+
+        <div>
+            <h2>注册页面-兴趣爱好</h2>
+            <input type="checkbox" v-model="checkedlist" value="vue"> Vue
+            <input type="checkbox" v-model="checkedlist" value="React"> React
+            <input type="checkbox" v-model="checkedlist" value="小程序"> 小程序
+            {{checkedlist}}
+        </div>
+
+        <div>
+            <h2>性别选择</h2>
+            <input type="radio" v-model="gender" value="a"> 男
+            <input type="radio" v-model="gender" value="b"> 女
+        </div>
+
+    </div>
+
+
+    <script>
+        var vm = new Vue({
+            el: '#box',
+            data: {
+                mytext: localStorage.getItem("username"),
+                isRemember: true,
+                checkedlist: [],
+                gender:""
+            },
+            methods: {
+                handleLogin() {
+                    if (this.isRemember) {
+                        localStorage.setItem("username", this.mytext)
+                      
+                    }
+                    // if(this.gender==='a'&this.gender==='b'){
+                    //     localStorage.setItem("gender", this.gender)
+
+                    // }
+                    
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

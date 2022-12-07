@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/vue2.js"></script>
+</head>
+<body>
+    <div id = "box">
+        <div v-if="isCreated">11111</div>
+        <div v-else="!isCreated">22222</div>
+        <h2>所有订单</h2>
+        <ul>
+            <li v-for="item in datalist">
+                {{item.title}}--{{item.state}}
+                <span v-if="item.state===0">未付款</span>
+                <span v-else-if="item.state===1">已付款</span>
+                <span v-else="item.state===2">已发货</span>
+                <span v-else="item.state===3">已签收</span>
+
+
+            </li>
+        </ul>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#box",
+            //一般用状态码显示state
+            data:{
+                isCreated:false,
+                datalist:[
+                {
+                    title:"11111",
+                    state:0
+                },
+                {
+                    title:"22222",
+                    state:1
+                },
+                {
+                    title:"33333",
+                    state:2
+                },
+                {
+                    title:"44444",
+                    state:3
+                },
+            ]
+            }
+        })
+    </script>
+</body>
+</html>

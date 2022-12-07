@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/vue2.js"></script>
+    <style>
+        .aa{}
+        .bb{}
+        .cc{}
+    </style>
+</head>
+<body>
+    <div id = "box">
+        <div :class="Classobj">动态切换class-1-对象写法</div>
+        <div :class="Classarr">动态切换class-2-数组写法</div>
+        <div :style="styleobj">动态切换style-1-对象写法</div>
+        <div :style="stylearr">动态切换style-2-数组写法</div>
+    </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#box",
+            data:{
+                Classobj:{
+                    aa:true,
+                    bb:true,
+                    cc:false
+                },
+                Classarr:["aa","bb",'cc'],
+                styleobj:{
+                    backgroundColor:'red'
+                },
+                stylearr:[{backgroundColor:"yellow"}]
+
+            }
+        })
+    </script>
+</body>
+</html>

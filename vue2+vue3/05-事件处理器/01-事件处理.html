@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/vue2.js"></script>
+</head>
+
+<body>
+    <div id='box'>
+        {{count}}
+        <!-- $event是固定的，用来替换事件对象 -->
+        <button @click="handleAdd1($event,1,2,3)">add-1-函数表达式</button>
+        <button @click="count++">add-2-函数名</button>
+        <button @click="handleminus1()">minus-1</button>
+        <button @click="reset0()">reset0</button>
+        <!-- 函数表达不加（）会获得事件原 -->
+        <input type="text" @input="handleInput" />
+        <ul @click.self="handleUlClick">
+            <li @click.stop="handleLiClick">111</li>
+            <li @click="handleLiClick">222</li>
+            <li>333</li>
+        </ul>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#box",
+            data: {
+                count: 1
+            },
+            methods: {
+                handleAdd1(evt,a,b,c) {
+                    this.count++
+                    console.log(evt.target,a,b,c)
+                },
+                handleminus1() {
+                    this.count--
+                },
+                reset0() {
+                    this.count = 0
+                },
+                handleInput(evt) {
+                    console.log(evt.target.value)
+                },
+                handleUlClick(){
+                    console.log("Ul")
+                },
+                handleLiClick(evt){
+                    console.log("Li")
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
