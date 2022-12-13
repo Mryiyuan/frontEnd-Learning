@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/vue2.js"></script>
+</head>
+<body>
+    <div id = "box">
+        <navbar @event="handleEvent"></navbar>
+        <sidebar v-show="isShow"></sidebar>
+    </div>
+    <script>
+        Vue.component("navbar",{
+            template:`
+            <div style="background-color:red"> 
+            <button @click="handleClick()">Click</button>导航栏
+            </div>
+            `,
+            methods:{
+                handleClick(){
+                    this.$emit("event")
+                }
+            }
+        })
+        Vue.component("sidebar",{
+            template:`
+            <div style="background-color:yellow;">
+                <ul>
+                    <li>111111111111</li>
+                    <li>111111111111</li>
+                    <li>111111111111</li>
+                    <li>111111111111</li>
+                    <li>111111111111</li>
+                    <li>111111111111</li>
+                    <li>111111111111</li>
+                    <li>111111111111</li>
+                    <li>111111111111</li>
+                    <li>111111111111</li>
+                </ul>
+            </div>
+            `
+
+        })
+        new Vue({
+            el:"#box",
+            data:{
+                isShow:true
+            },methods:{
+                handleEvent(){
+                    this.isShow=!this.isShow
+                }
+            }
+        })
+    </script>
+</body>
+</html>

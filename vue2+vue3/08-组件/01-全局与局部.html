@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/vue2.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <navbar></navbar>
+    </div>
+    <script>
+        Vue.component("navbar", {
+            //dom,js,css
+            //``这个是es6模板写法可以轻松换行
+            template: `
+                <div style="background:red">
+                    <button @click="handleLeft">left</button>
+                    猫眼电影-{{myname}}
+                    <button @click="handleright">right</button>
+                    <child></child>
+                </div>`,
+            methods: {
+                handleLeft() {
+                    console.log("left")
+
+                },
+                handleright() {
+                    console.log("right")
+                },
+            },
+            //data必须函数式写法
+            data() {
+                return {
+                    myname: 11111
+                }
+            }
+
+
+        })
+        Vue.component("child", {
+            template: `
+                <div style="background:yellow">标语</div>`
+        })
+        var vm = new Vue({
+            el: "#box",
+        })
+    </script>
+</body>
+
+</html>
