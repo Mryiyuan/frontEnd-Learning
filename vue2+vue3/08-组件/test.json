@@ -1,0 +1,38 @@
+{
+    "data":{
+        "films":[
+        {
+            "filmId":"11111",
+            "poster":"pics/OIP-C-400x600.jpg",
+            "name":"小"
+         
+        }, 
+        {
+            "filmId":"22222",
+            "poster":"pics/OIP-C (1)-400x600.jpg",
+            "name":"花"
+        },    
+        {
+            "filmId":"33333",
+            "poster":"pics/sonicV3-400x600.png",
+            "name":"生"
+        },    
+        {
+            "filmId":"44444",
+            "poster":"pics/OIP-C-400x600.jpg",
+            "name":"吃"
+        },    
+        {
+            "filmId":"555555",
+            "poster":"pics/sonicV3-400x600.png",
+            "name":"饭"
+        },    
+        {
+            "filmId":"666666",
+            "poster":"pics/OIP-C (1)-400x600.jpg",
+            "name":"团"
+        }   
+        ]
+        
+    }
+}
