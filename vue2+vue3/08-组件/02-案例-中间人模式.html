@@ -9,7 +9,7 @@
     <title>Document</title>
     <script src="lib/vue2.js"></script>
     <style>
-        .filminfo{
+        .filminfo {
             width: 300px;
             min-height: 200px;
             background: yellow;
@@ -25,7 +25,7 @@
     <div id="box">
         <button @click="handleAjax">ajax</button>
         <film-item v-for="item in datalist" :key="item.name" :mydata="item" @event="handleEvent"></film-item>
-        <film-detial :film-data = "filmData">
+        <film-detial :film-data="filmData">
 
         </film-detial>
 
@@ -33,9 +33,9 @@
     </div>
 
     <script>
-   
+
         Vue.component("filmItem", {
-            props:["mydata"],
+            props: ["mydata"],
             template: `
             <div>
                 1111111-{{mydata.name}}
@@ -43,16 +43,16 @@
                 <button @click="handleDetail">详情</button>
             </div>
             `,
-            methods:{
-                handleDetail(){
+            methods: {
+                handleDetail() {
                     //console.log(this.mydata.filmId)
-                    this.$emit("event",this.mydata.filmId)
+                    this.$emit("event", this.mydata.filmId)
                 },
-                
+
             }
         })
-        Vue.component("filmDetial",{
-            props:["film-data"],
+        Vue.component("filmDetial", {
+            props: ["film-data"],
             template: `
             <div class="filminfo">
                     {{filmData}}
@@ -63,7 +63,7 @@
             el: "#box",
             data: {
                 datalist: [],
-                filmData:""
+                filmData: ""
 
             },
             methods: {
@@ -76,8 +76,8 @@
                         })
                 },
                 //自定义父组件
-                handleEvent(data){
-                    console.log("1",data)
+                handleEvent(data) {
+                    console.log("1", data)
                     this.filmData = data
 
                 }
