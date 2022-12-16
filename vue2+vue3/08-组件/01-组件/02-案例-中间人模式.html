@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="lib/vue2.js"></script>
+    <script src="../lib/vue2.js"></script>
     <style>
         .filminfo {
             width: 300px;
@@ -24,17 +24,15 @@
 <body>
     <div id="box">
         <button @click="handleAjax">ajax</button>
-        <film-item v-for="item in datalist" :key="item.name" :mydata="item"></film-item>
-        <film-detial>
+        <film-item v-for="item in datalist" :key="item.name" :mydata="item" @event="handleEvent"></film-item>
+        <film-detial :film-data="filmData">
+
         </film-detial>
 
 
     </div>
 
     <script>
-        var bus = new Vue()
-        //bus.$on 监听
-        //bus.$emit 触发
 
         Vue.component("filmItem", {
             props: ["mydata"],
@@ -47,31 +45,17 @@
             `,
             methods: {
                 handleDetail() {
-                    console.log(this.mydata.filmId)
-                    bus.$emit("lcc", this.mydata.filmId)
+                    //console.log(this.mydata.filmId)
+                    this.$emit("event", this.mydata.filmId)
                 },
 
             }
         })
         Vue.component("filmDetial", {
-            //组件刚刚创建好就开始订阅
-            data(){
-                return{
-                    info:""
-                }
-            },
-
-            //生命周期
-            mounted(){
-                console.log("当前组件上树后触发")
-                bus.$on("lcc",(data)=>{
-                    console.log("1111111",data)
-                    this.info=data
-                })
-            },
+            props: ["film-data"],
             template: `
             <div class="filminfo">
-                   {{info}}
+                    {{filmData}}
             </div>
             `
         })
@@ -90,6 +74,12 @@
                             console.log(res.data.films)
                             this.datalist = res.data.films
                         })
+                },
+                //自定义父组件
+                handleEvent(data) {
+                    console.log("1", data)
+                    this.filmData = data
+
                 }
             }
         })
