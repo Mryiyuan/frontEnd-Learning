@@ -12,15 +12,28 @@
 <body>
     <div id="box">
         <child>
-            <div slot="a">11111111111111111111111</div>
-            <div slot="b">22222222222222222222222</div>
+            <template v-slot:a>
+                <div>11111111111111111111111</div>
+            </template>
+            <!-- <div slot="a">11111111111111111111111</div> -->
+
+            <template #b>
+                <div>
+                    22222222222222222222222 
+                </div>
+            </template>
+            <!-- <div slot="b">22222222222222222222222</div> -->
             <div slot="c">33333333333333333333333</div>
             <div>44444444444444444444444</div>
         </child>
 
         <navbar>
-            <button slot="left">aaa</button>
-            <i class="iconfont icon-all" slot="right">字体图标</i>
+            <template #left>
+                <button>aaa</button>
+            </template>
+            <template #right>
+                <i class="iconfont icon-all">字体图标</i>
+            </template>
         </navbar>
 
       

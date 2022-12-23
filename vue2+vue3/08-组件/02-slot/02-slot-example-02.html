@@ -1,0 +1,58 @@
+<!-- p42 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../lib/vue2.js"></script>
+</head>
+<body>
+    <div id = "box">
+        <navbar>
+            <button @click="isShow=!isShow">click</button>
+        </navbar>
+        <sidebar v-show="isShow"></sidebar>
+    </div>
+    <script>
+        Vue.component("navbar",{
+            template:`
+            <div style="background:yellow"> 
+            nabbar-<slot></slot>
+            </div>
+            `,
+            methods:{
+                handleClick(){
+                    this.$emit("event")
+                }
+            }
+        })
+        Vue.component("sidebar",{
+            template:`
+         
+                <ul style="background-color:yellow;width:200px;height:500px;">
+                    <li>首页</li>
+                    <li>钱包</li>
+                    <li>设置</li>
+                </ul>
+            `
+
+        })
+        new Vue({
+            el:"#box",
+            data:{
+                isShow:false
+            },methods:{
+                handleEvent(){
+                    this.isShow=!this.isShow
+                }
+            }
+        })
+        /*
+        父传子 属性
+        子传父 事件    
+        */
+    </script>
+</body>
+</html>
