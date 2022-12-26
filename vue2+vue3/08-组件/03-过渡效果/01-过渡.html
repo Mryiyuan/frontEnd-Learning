@@ -1,20 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="../lib/vue2.js"></script>
+    <style>
+        /* 出场动画 */
+        .enter-active {
+            animation: aaa 1.5s;
+        }
+
+        .leave-active {
+            animation: aaa 1.5s reverse;
+        }
+    </style>
 </head>
+
 <body>
-    <div>
+    <div id="box">
+        <button @click="isShow=!isShow">change</button>
+        <transition enter-active-class="enter-active" leave-active-class="leave-active">
+            <div v-show="isShow">1111111111111111111111111</div>
+        </transition>
 
     </div>
 
     <script>
+        new Vue({
+            el: "#box",
+            data: {
+                 isShow: false 
+                 }
+        })
 
 
     </script>
 </body>
+
 </html>
