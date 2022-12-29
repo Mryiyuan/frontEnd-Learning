@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/vue2.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <div v-hello="'yellow'">1111111111</div>
+        <div v-hello="'red'">2222222222</div>
+        <div v-hello="whichColor">3333333333</div>
+    </div>
+
+    <script>
+        Vue.directive("hello", {
+            //指令的生命周期函数
+            inserted(el,binding){
+                //第一次插入到父节点中会触发
+                console.log("fk")
+                el.style.background=binding.value
+            }
+        })
+        new Vue({
+            el: "#box",
+            data:{
+                whichColor:"blue"
+            }
+        })
+    </script>
+</body>
+
+</html>
