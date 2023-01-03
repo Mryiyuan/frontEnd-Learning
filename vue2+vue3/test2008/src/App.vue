@@ -16,6 +16,33 @@
     </navbar>
     <sidebar v-show="isShow"></sidebar>
     <div v-hello>1111111111111111111</div>
+    <!-- 声明式导航式 -->
+    <h1>声明式导航式</h1>
+    <ul>
+      <li>
+        <a href="/#/films">movie</a>
+      </li>
+      <li>
+        <a href="/cinemas">cinema</a>
+      </li>
+      <li>
+        <a href="/center">My</a>
+      </li>
+    </ul>
+    <!-- ---------------------------- ----------------------------------->
+    <!-- Vue-router 声明式导航式 -->
+    <h1>Vue-router</h1>
+    <ul>
+      <li>
+        <router-link to="/#/films" active-class="lccactive" tag="li">movie</router-link>
+      </li>
+      <li>
+        <router-link to="/cinemas" active-class="lccactive">cinema</router-link>
+      </li>
+      <li>
+        <router-link to="/center" active-class="lccactive">My</router-link>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -62,12 +89,12 @@ export default {
         console.log(res.data);
       }),
       axios
-      .get(
-        "/lcc/ajax/mostExpected?limit=10&offset=0&token=&optimus_uuid=75E48D00880511ED81F2BD01FF980A4C0EB274D4416C42F9B20DA4D4D391E33B&optimus_risk_level=71&optimus_code=10"
-      )
-      .then((res) => {
-        console.log(res.data);
-      });;
+        .get(
+          "/lcc/ajax/mostExpected?limit=10&offset=0&token=&optimus_uuid=75E48D00880511ED81F2BD01FF980A4C0EB274D4416C42F9B20DA4D4D391E33B&optimus_risk_level=71&optimus_code=10"
+        )
+        .then((res) => {
+          console.log(res.data);
+        });
   },
 };
 </script>
@@ -78,5 +105,8 @@ $w: 300px;
 ul li {
   background: rgb(43, 211, 226);
   width: $w;
+}
+.lccactive {
+  color: red;
 }
 </style>

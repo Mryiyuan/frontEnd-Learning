@@ -36,6 +36,7 @@ const routes = [
     path:'/',
     redirect:'/films'
   },
+  //重定向redirect
   {
     path:'*',
     redirect:'/films'
