@@ -43,6 +43,17 @@
         <router-link to="/center" active-class="lccactive">My</router-link>
       </li>
     </ul>
+    <div>
+      <div class="first">this is the first block</div>
+      <div class="second">
+        <div class="secondFirst">111
+          <button>test</button>
+        </div>
+        <div class="secondSecond">222</div>
+        <div class="secondThird">333</div>
+        <div class="secondForth">444</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -102,11 +113,64 @@ export default {
 <style lang="scss" scoped>
 // scoped 局部作用域
 $w: 300px;
+
 ul li {
   background: rgb(43, 211, 226);
   width: $w;
 }
+
 .lccactive {
   color: red;
 }
-</style>
+
+.first {
+  display: flex;
+  background-color: rgb(255, 127, 146);
+}
+
+.second {
+
+  display: flex;
+  background-color: aquamarine;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+
+
+
+  .secondFirst {
+    background-color: #f1f1f1;
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
+    flex-grow: 1;
+  }
+
+  .secondSecond {
+    background-color: #f1f1f1;
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
+    flex-grow: 1
+  }
+
+  .secondThird {
+    background-color: #f1f1f1;
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
+    flex-grow: 1
+  }
+
+
+  .secondForth {
+    background-color: #f1f1f1;
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
+    flex-grow: 1
+  }
+
+
+}</style>

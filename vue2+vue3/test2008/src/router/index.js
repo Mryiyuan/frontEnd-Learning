@@ -33,6 +33,11 @@ const routes = [
     component: Cinemas
   },
   {
+    path: '/testdiv',
+    name: 'testdiv',
+    // component: Cinemas
+  },
+  {
     path:'/',
     redirect:'/films'
   },
